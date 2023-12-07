@@ -43,3 +43,46 @@ export function mulNumStringArr(arr) {
   }
   return currentPro;
 }
+
+export function getDivisors(n) {
+  if (n == 1) return [1];
+  let divisors = [];
+  for (let i = 1; i <= n / 2; i++) {
+    if (n % i == 0) divisors.push(i);
+  }
+  return divisors;
+}
+
+export function sumArray(arr) {
+  let sum = 0;
+  for (const e of arr) {
+    sum += Number(e);
+  }
+  return sum;
+}
+
+export function getCharcodeSum(string) {
+  let sum = 0;
+  for (let c of string) sum += c.charCodeAt(0);
+  return sum;
+}
+
+export function getPermutations(inputArr) {
+  let result = [];
+
+  const permute = (arr, m = []) => {
+    if (arr.length === 0) {
+      result.push(m);
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        let curr = arr.slice();
+        let next = curr.splice(i, 1);
+        permute(curr.slice(), m.concat(next));
+      }
+    }
+  };
+
+  permute(inputArr);
+
+  return result;
+}

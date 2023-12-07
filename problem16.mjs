@@ -8,3 +8,5 @@ console.log(
     .split("")
     .reduce((a, b) => +a + +b, 0)
 );
+
+// console.log(mulNumStringArr(Array(10000).fill("20")));

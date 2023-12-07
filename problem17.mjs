@@ -12,26 +12,34 @@ const map = {
   11: "eleven",
   12: "twelve",
   13: "thirteen",
+  15: "fifteen",
+  18: "eighteen",
   20: "twenty",
   30: "thirty",
   40: "forty",
-  100: "one hundred",
+  50: "fifty",
+  80: "eighty",
 };
 
 function getNumberString(n) {
+  let [e, z, h, t] = n.toString().split("").reverse().map(Number);
   let str = "";
-  if (n === 1000) return "one thousand";
-  if (n > 100) str += map[Math.floor(n / 100)] + " hundred ";
-  let l = n % 100;
-  if (l) str += "and";
-  if (l == 10) return str + "ten";
-  let r = Math.floor(l % 10);
-  if (l >= 20) str += l >= 50 ? map[Math.floor(l / 10)] + "ty" : map[Math.floor(l / 10) * 10];
-  if (l > 10 && l < 20) str += l > 13 ? map[l % 10] + "teen" : map[l];
+  if (t) str += map[t] + "thousand";
+  if (h) str += map[h] + "hundred";
 
-  if (l % 10) {
-    str += map[l % 10];
+  if (!e && !z) return str;
+  else if (t || h) str += "and";
+  let m = 10 * z + e;
+  if (map[m]) return str + map[m];
+
+  if (z) {
+    if (z >= 2) str += !map[z * 10] ? map[z] + "ty" : map[z * 10];
+    else str += map[e] + "teen";
   }
+  if (e && z != 1) {
+    str += map[e];
+  }
+
   return str;
 }
 
@@ -40,8 +48,6 @@ let sum = 0;
 //   console.log(getNumberString(i));
 // }
 for (let i = 1; i <= 1000; i++) {
-  sum += getNumberString(i)
-    .split("")
-    .filter((e) => e != " ").length;
+  sum += getNumberString(i).length;
 }
 console.log(sum);
