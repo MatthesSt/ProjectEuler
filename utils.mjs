@@ -38,8 +38,11 @@ export function mulNumStringArr(arr) {
   arr = arr.filter((e) => e.length != 0 && e != 1);
   if (arr.length < 2) return arr[0] || 0;
   let currentPro = arr.pop();
+  let counter = 0;
   for (let num of arr) {
+    counter++;
     currentPro = mulNumStrings(currentPro, num);
+    console.log(counter, "/", arr.length);
   }
   return currentPro;
 }
@@ -85,4 +88,20 @@ export function getPermutations(inputArr) {
   permute(inputArr);
 
   return result;
+}
+
+export function factorial(num) {
+  if (Number(num) === 0) return 1;
+  return Number(BigInt(num) * BigInt(factorial(num - 1)));
+}
+
+export function isPrime(num) {
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+    if (num % i === 0) return false;
+  }
+  return num > 1;
+}
+
+export function isPalindrome(val) {
+  return val.toString() === val.toString().split("").reverse().join("");
 }
