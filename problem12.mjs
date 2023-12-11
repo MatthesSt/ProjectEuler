@@ -1,14 +1,12 @@
 const threshhold = 500;
 let triangleNumber = 0;
-let i = 1;
-while (true) {
+for (let i = 1; 100000000; i++) {
   triangleNumber += i;
   const factors = getFactors(triangleNumber);
   if (factors.length > threshhold) {
     console.log(triangleNumber);
     break;
   }
-  i++;
 }
 
 function getFactors(n) {

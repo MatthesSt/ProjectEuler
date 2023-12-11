@@ -38,11 +38,8 @@ export function mulNumStringArr(arr) {
   arr = arr.filter((e) => e.length != 0 && e != 1);
   if (arr.length < 2) return arr[0] || 0;
   let currentPro = arr.pop();
-  let counter = 0;
   for (let num of arr) {
-    counter++;
     currentPro = mulNumStrings(currentPro, num);
-    console.log(counter, "/", arr.length);
   }
   return currentPro;
 }
@@ -104,4 +101,31 @@ export function isPrime(num) {
 
 export function isPalindrome(val) {
   return val.toString() === val.toString().split("").reverse().join("");
+}
+
+export function primeFactors(n) {
+  const factors = [];
+  let divisor = 2;
+
+  while (n >= 2) {
+    if (n % divisor == 0) {
+      factors.push(divisor);
+      n = n / divisor;
+    } else {
+      divisor++;
+    }
+  }
+  return factors;
+}
+
+export function NK(n, k) {
+  return Number(factorial(n)) / (Number(factorial(k)) * Number(factorial(n - k)));
+}
+
+export function progress(i, arr, prevProgress) {
+  if (i == 0) console.log("start");
+  if (i == arr.length) console.log("done");
+  let percent = Math.floor(arr.length / i);
+  if (percent - prevProgress > 1 && i) console.log(`${Math.floor(arr.length / i)}% => ${i}/${arr.length}`);
+  return percent;
 }
