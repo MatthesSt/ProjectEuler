@@ -100,7 +100,11 @@ export function isPrime(num) {
 }
 
 export function isPalindrome(val) {
-  return val.toString() === val.toString().split("").reverse().join("");
+  let input = val.toString();
+  for (let i in input) {
+    if (input[i] !== input[input.length - i - 1]) return false;
+  }
+  return true;
 }
 
 export function primeFactors(n) {
