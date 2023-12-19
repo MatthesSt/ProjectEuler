@@ -133,3 +133,11 @@ export function progress(i, arr, prevProgress) {
   if (percent - prevProgress > 1 && i) console.log(`${Math.floor(arr.length / i)}% => ${i}/${arr.length}`);
   return percent;
 }
+
+export function gcd(a, b) {
+  if (!b) {
+    return a;
+  }
+
+  return gcd(b, a % b);
+}

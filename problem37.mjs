@@ -1,16 +1,25 @@
 import { isPrime } from "./utils.mjs";
+console.time();
+
 function truncatedVariants(num) {
   let numString = num.toString();
-  const variants = [];
+  const variants = new Set();
   for (let i = 0; i < numString.length; i++) {
-    variants.push(numString.slice(i), numString.slice(0, i));
+    variants.add(numString.slice(i));
+    variants.add(numString.slice(0, i));
   }
-  return [...new Set(variants)].filter((e) => e != "");
+  variants.delete("");
+  return [...variants];
 }
 
-const truncatablePrimes = [];
+let truncatablePrimeSum = 0;
 
-for (let i = 10; truncatablePrimes.length < 11; i++) {
-  if (truncatedVariants(i).every((e) => isPrime(e))) truncatablePrimes.push(i);
+for (let i = 23, s = 0; s < 11; i++) {
+  if (truncatedVariants(i).every(isPrime)) {
+    truncatablePrimeSum += i;
+    s++;
+  }
 }
-console.log(truncatablePrimes.reduce((a, b) => a + b));
+console.log(truncatablePrimeSum);
+
+console.timeEnd();

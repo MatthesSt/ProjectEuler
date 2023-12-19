@@ -1,6 +1,11 @@
-import { getPermutations, isPrime } from "./utils.mjs";
-
 let primes = [];
+
+function isPrime(num) {
+  for (let i = 2, s = Math.sqrt(num); i <= s; i++) {
+    if (num % i === 0) return false;
+  }
+  return num > 1;
+}
 
 for (let i = 0; i < 1000000; i++) {
   if (isPrime(i)) primes.push(i);
@@ -17,6 +22,7 @@ function getNumberRotations(num) {
 
 const circularPrimes = [];
 for (let prime of primes) {
+  // console.log(prime);
   const perms = getNumberRotations(prime);
   if (perms.every((e) => isPrime(e))) circularPrimes.push(prime);
 }
