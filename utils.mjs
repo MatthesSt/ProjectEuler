@@ -141,3 +141,9 @@ export function gcd(a, b) {
 
   return gcd(b, a % b);
 }
+
+export function time(f, label = "total") {
+  console.time(label);
+  f();
+  console.timeEnd(label);
+}
