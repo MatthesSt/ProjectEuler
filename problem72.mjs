@@ -11,8 +11,8 @@ let counter = 1;
 for (let d = 1000000; d >= 2; d--) {
   if (d % 1000 == 999) console.time("step");
   for (let n = 1; n < d / 2; n++) {
-    counter += gcd(d, n);
-    counter += gcd(d, d - n);
+    counter += gcd(d, n) == 1;
+    counter += gcd(d, d - n) == 1;
   }
   if (d % 1000 == 0) {
     console.log(d);
