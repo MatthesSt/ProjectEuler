@@ -9,16 +9,14 @@ function gcd(a, b) {
 
 let counter = 1;
 for (let d = 1000000; d >= 2; d--) {
-  if (d % 1000 == 999) console.time("step");
+  if (d % 1000 == 0) {
+    console.timeLog("total", d);
+  }
   for (let n = 1; n < d / 2; n++) {
     counter += gcd(d, n) == 1;
     counter += gcd(d, d - n) == 1;
   }
-  if (d % 1000 == 0) {
-    console.log(d);
-    console.timeEnd("step");
-  }
 }
 
 console.log(counter);
-console.timeEnd("total");
+console.timeEnd("total"); //total: 13:44:35.644 (h:mm:ss.mmm)
