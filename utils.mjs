@@ -147,5 +147,3 @@ export function time(f, label = "total") {
   f();
   console.timeEnd(label);
 }
-
-console.log(+!+[]);
