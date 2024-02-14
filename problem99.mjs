@@ -1,20 +1,22 @@
 import pairs from "./0099_base_exp.json" assert { type: "json" };
-import { mulNumStringArr, time } from "./utils.mjs";
+import { potenz, time } from "./utils.mjs";
 
 time(() => {
-  // console.log(pairs);
   function getDigitCount(a, b) {
-    return mulNumStringArr(Array(b).fill(a));
+    return potenz(a, b);
   }
   let biggest = "";
-  for (const [a, b] of pairs) {
+  let bigIndex = 0;
+  for (const index in pairs) {
+    const [a, b] = pairs[index];
     if (!pairs.find(([c, d]) => c > a && d > b)) {
-      console.timeLog("total", [a, b]);
+      console.timeLog("total", [a, b], biggest.length, bigIndex, index);
       let next = getDigitCount(a, b);
-      if (next.length > biggest.length) {
+      if (next.length > biggest.length || BigInt(next) > BigInt(biggest)) {
         biggest = next;
+        bigIndex = index;
       }
     }
   }
-  console.log(biggest.length);
+  console.log(bigIndex);
 });

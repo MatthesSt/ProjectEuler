@@ -2,11 +2,11 @@ import { isPalindrome } from "./utils.mjs";
 
 function isLychrel(num) {
   let currentSum = num;
-  for (let i = 0; i <= 50; i++) {
+  for (let i = 1; i < 50; i++) {
     currentSum += reverseNum(currentSum);
-    if (isPalindrome(currentSum)) return true;
+    if (isPalindrome(currentSum)) return false;
   }
-  return false;
+  return true;
 }
 
 function reverseNum(num) {
@@ -16,7 +16,7 @@ function reverseNum(num) {
 }
 
 let lychrelCounter = 0;
-for (let i = 10; i < 10000; i++) {
+for (let i = 0; i < 10000; i++) {
   lychrelCounter += Number(isLychrel(i));
 }
 
